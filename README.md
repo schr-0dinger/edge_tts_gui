@@ -13,7 +13,7 @@ EDGE TTS GUI is a graphical user interface (GUI) application built with [CustomT
 ## Installation
 
 1. **Download the Standalone Executable:**
-    - Go to the [Releases](https://github.com/yourusername/edge_tts_gui/releases) page.
+    - Go to the [Releases](https://github.com/schr-0dinger/edge_tts_gui/releases) page.
     - Download the latest version of `edge_tts_gui.exe`.
 
 2. **Run the Application:**
