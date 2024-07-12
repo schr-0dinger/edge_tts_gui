@@ -1,0 +1,6 @@
+gui.py
+gui.spec
+modern.spec
+build/
+dist/
+EDGE\ TTS\ GUI\ 0.1-alpha.spec
