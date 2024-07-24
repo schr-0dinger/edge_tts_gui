@@ -55,9 +55,9 @@ EDGE TTS GUI is a graphical user interface (GUI) application built with [CustomT
 
 ## To-do List
 
-- [] Add option to switch between MP3/WAV format
-- [] Fix faulty preview function
-- [] Fix 0-100 volume slider
+-[x] Add option to switch between MP3/WAV format
+-[ ] Fix faulty preview function
+-[ ] Fix 0-100 volume slider
 
 ## Dependencies
 

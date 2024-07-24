@@ -73,9 +73,13 @@ class App(ctk.CTk):
         CTkMessagebox(title="Warning Message!", message="Text box cannot be empty", icon="warning", option_1="OK")
         self.btn_preview.configure(state="normal")  
 
-    async def convert(self, TEXT, VOICE, OUTPUT_FILE, RATE, PITCH, VOLUME):
+    async def convert(self, TEXT, VOICE, OUTPUT_FILE, RATE, PITCH, VOLUME, FORMAT):
         communicate = edge_tts.Communicate(TEXT, VOICE, rate=RATE, pitch=PITCH, volume=VOLUME)
         await communicate.save(OUTPUT_FILE)
+        if FORMAT == "WAV":
+            sound = AudioSegment.from_mp3(OUTPUT_FILE)
+            sound.export(f"{OUTPUT_FILE}.wav", format="wav")
+            os.remove(OUTPUT_FILE)
 
     async def preview(self, TEXT, VOICE, OUTPUT_FILE, RATE, PITCH, VOLUME):
         communicate = edge_tts.Communicate(TEXT, VOICE, rate=RATE, pitch=PITCH, volume=VOLUME)
@@ -98,11 +102,12 @@ class App(ctk.CTk):
     def on_convert(self):
         TEXT = self.ent.get("1.0", "end-1c")
         VOICE = self.combox.get()
+        FORMAT = self.format_option.get()
         RATE, PITCH, VOLUME = self.get_audio_properties()
-        OUTPUT_FILE = self.get_output_filename(TEXT, VOICE)
+        OUTPUT_FILE = self.get_output_filename(TEXT, VOICE, FORMAT)
         if len(TEXT) != 0 :
             if isinstance(OUTPUT_FILE, str):
-                asyncio.run(self.convert(TEXT, VOICE, OUTPUT_FILE, RATE, PITCH, VOLUME))
+                asyncio.run(self.convert(TEXT, VOICE, OUTPUT_FILE, RATE, PITCH, VOLUME,FORMAT))
         else:    
             self.show_empty()    
 
@@ -134,14 +139,20 @@ class App(ctk.CTk):
         VOLUME = f"{'+' if int(self.vol_scale.get()) >= 0 else ''}{int(self.vol_scale.get())}%"
         return RATE, PITCH, VOLUME
 
-    def get_output_filename(self, TEXT, VOICE):
+    def get_output_filename(self, TEXT, VOICE, FORMAT):
         now_str = datetime.now().strftime("%B %d %Y %H-%M-%S")
+        FORMAT = 'MP3'
+        if self.format_option.get() == 'WAV': FORMAT = ''
         if self.radio_var.get() == 1:
-            return f"{VOICE}{now_str}.mp3"
+            return f"{VOICE}{now_str}.{FORMAT}"
         elif self.radio_var.get() == 2:
-            return f"{TEXT[:11].replace(' ', '_')}.mp3"
+            return f"{TEXT[:11].replace(' ', '_')}.{FORMAT}"
         else:
-            return ctk.CTkInputDialog(text="Enter Output file name", title="Save As").get_input() + ".mp3"
+            return ctk.CTkInputDialog(text="Enter Output file name", title="Save As").get_input() + FORMAT
+        
+    def get_output_format(self):
+        FORMAT = self.format_option.get()
+        return FORMAT
 
     def update_scales(self, event=None):
         self.rate_scale_lbl.configure(text="RATE " + str(int(self.rate_scale.get())))
@@ -168,6 +179,8 @@ class App(ctk.CTk):
         self.btn_preview = ctk.CTkButton(self, text="PREVIEW", command=self.start_preview_thread, width=100, height=50, fg_color="#41436A")
         self.btn_preview.place(x=400, y=310)
         self.create_rename_frame()
+        self.format_option = ctk.CTkComboBox(self, values=["MP3","WAV"], width=150, hover=True)
+        self.format_option.place(x=400, y=380)
         self.reset_scale_btn = ctk.CTkButton(self, text="RESET", command=self.reset_scales, width=10)
         self.reset_scale_btn.place(x=640, y=30)
         self.info = ctk.CTkButton(self, text="About", width=100, command=self.show_info)
