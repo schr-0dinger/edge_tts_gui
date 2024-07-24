@@ -1,5 +1,7 @@
 # EDGE TTS GUI
 
+![Screenshot](https://i.ibb.co/R9CDMLn/edge-tts-gui.png)
+
 EDGE TTS GUI is a graphical user interface (GUI) application built with [CustomTkinter](https://github.com/tomschimansky/customtkinter) that utilizes the `edge-tts` library to convert text to speech using Microsoft's online text-to-speech service. This application allows users to input text, select a voice, and adjust speech parameters such as rate, pitch, and volume. It also provides options to preview the generated speech and save it as an audio file.
 
 ## Features
@@ -12,7 +14,7 @@ EDGE TTS GUI is a graphical user interface (GUI) application built with [CustomT
 
 ## Installation
 
-#### Method 1:
+#### Method 1 (Windows Executable):
 
 1. **Download the Standalone Executable:**
     - Go to the [Releases](https://github.com/schr-0dinger/edge_tts_gui/releases) page.
