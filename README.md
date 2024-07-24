@@ -12,12 +12,36 @@ EDGE TTS GUI is a graphical user interface (GUI) application built with [CustomT
 
 ## Installation
 
+#### Method 1:
+
 1. **Download the Standalone Executable:**
     - Go to the [Releases](https://github.com/schr-0dinger/edge_tts_gui/releases) page.
     - Download the latest version of `edge_tts_gui.exe`.
 
 2. **Run the Application:**
     - Double-click the downloaded `edge_tts_gui.exe` file to start the application.
+
+
+#### Method 2:
+
+###### Prerequisites:
+
+- Python 3.x
+- Dependencies
+
+0. Install dependencies:
+
+        pip install edge-tts CTkMessageBox customtkinter pydub
+    
+
+1. ** Clone the repo **
+
+        git clone https://github.com/schr-0dinger/edge_tts_gui.git
+
+2. ** Run edge_tts_gui.py ** 
+
+        python edge_tts_gui.py
+    
 
 ## Usage
 
@@ -29,9 +53,15 @@ EDGE TTS GUI is a graphical user interface (GUI) application built with [CustomT
     - **Preview:** Click the "PREVIEW" button to listen to the speech before saving.
     - **Save Options:** Choose how you want to name the output file.
 
+## To-do List
+
+- [] Add option to switch between MP3/WAV format
+- [] Fix faulty preview function
+- [] Fix 0-100 volume slider
+
 ## Dependencies
 
-All necessary dependencies are bundled within the standalone executable, so you don't need to install anything else.
+All necessary dependencies are bundled within the standalone executable, so you don't need to install anything else if you using the executable.
 
 ## Project Description
 
