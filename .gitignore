@@ -3,4 +3,7 @@ gui.spec
 modern.spec
 build/
 dist/
+edge
 EDGE\ TTS\ GUI\ 0.1-alpha.spec
+*.MP3
+*.WAV

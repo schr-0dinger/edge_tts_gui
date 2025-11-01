@@ -29,13 +29,13 @@ class App(ctk.CTk):
             # Running in normal Python environment
             base_path = os.path.abspath(".")
 
-        icon_path = os.path.join(base_path, "assets", "icon.ico")
+        icon_path = os.path.join(base_path, "assets", "icon.png")
         
         if not os.path.exists(icon_path):
             raise FileNotFoundError(f"Icon file not found: {icon_path}")
 
         self.iconpath = ImageTk.PhotoImage(file=icon_path)
-        self.wm_iconbitmap(icon_path)
+        # self.wm_iconbitmap(icon_path)
         self.iconphoto(False, self.iconpath)
 
         # Voice Names
